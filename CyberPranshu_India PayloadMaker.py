@@ -1,4 +1,4 @@
-       import os
+import os
 import platform
 import logging
 import subprocess
@@ -94,6 +94,8 @@ def generate_payload(ip, port, payload_type, android_api_level=None, bind=False,
     return success_message
 
 if __name__ == "__main__":
+    verbose = True
+
     ip = input("Enter your IP address: ")
     port = input("Enter the port: ")
     payload_type = input("Enter payload type (android/windows/linux): ").lower()
@@ -101,8 +103,6 @@ if __name__ == "__main__":
 
     bind = input("Do you want to bind payloads? (yes or no): ").strip().lower() == "yes"
     bind_file = input("Enter the path to the file you want to bind (leave empty if not binding): ").strip()
-    verbose = True
 
-    result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, verbose)
+    result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, verbose=verbose)
     print(result)
-                                              
