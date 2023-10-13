@@ -103,7 +103,8 @@ if __name__ == "__main__":
 
     bind = input("Do you want to bind payloads? (yes or no): ").strip().lower() == "yes"
     bind_file = input("Enter the path to the file you want to bind (leave empty if not binding): ").strip()
+    
+result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, verbose=verbose)
 
-    result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, custom_output_file=None, verbose)
     print(result)
                                                                                                                                 
