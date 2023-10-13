@@ -106,5 +106,6 @@ if __name__ == "__main__":
     
 result = generate_payload(ip, port, payload_type, android_api_level, bind, bind_file, verbose=verbose)
 
+
     print(result)
                                                                                                                                 
